@@ -46,14 +46,14 @@ jobs:
           version: '1.11.0'
 
       - name: Packer Init
-        run: packer init avd_windowsserver2022_prod_image_build.pkr.hcl
+        run: packer init avd_windowsserver2022_nonprod_image_build.pkr.hcl
 
       - name: Packer Validate
         run: packer validate avd_windowsserver2022_nonprod_image_build.pkr.hcl
 
       - name: Build Image
         timeout-minutes: 1440
-        run: packer build -on-error=abort avd_windowsserver2022_prod_image_build.pkr.hcl
+        run: packer build -on-error=abort avd_windowsserver2022_nonprod_image_build.pkr.hcl
 
       - name: Upload Packer Logs
         if: always()
